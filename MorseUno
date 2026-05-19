@@ -1,0 +1,129 @@
+String currentMorse = "";
+String typedText = "";
+
+const int xPin = A0;
+const int yPin = A1;
+
+unsigned long lastMove = 0;
+const int debounce = 250;
+
+struct MorseMap {
+    const char* code;
+    char letter;
+};
+
+MorseMap morseTable[] = {
+    {"._", 'A'},
+    {"_...", 'B'},
+    {"_._.", 'C'},
+    {"_..", 'D'},
+    {".", 'E'},
+    {".._.", 'F'},
+    {"__.", 'G'},
+    {"....", 'H'},
+    {"..", 'I'},
+    {".___", 'J'},
+    {"_._", 'K'},
+    {"._..", 'L'},
+    {"__", 'M'},
+    {"_.", 'N'},
+    {"___", 'O'},
+    {".__.", 'P'},
+    {"__._", 'Q'},
+    {"._.", 'R'},
+    {"...", 'S'},
+    {"_", 'T'},
+    {".._", 'U'},
+    {"..._", 'V'},
+    {".__", 'W'},
+    {"_.._", 'X'},
+    {"_.__", 'Y'},
+    {"__..", 'Z'}
+};
+
+char decodeMorse(String code) {
+
+    for(auto &m : morseTable) {
+
+        if(code == m.code)
+            return m.letter;
+    }
+
+    return '?';
+}
+
+void setup() {
+
+    Serial.begin(115200);
+}
+
+void loop() {
+
+    int x = analogRead(xPin);
+    int y = analogRead(yPin);
+
+    if(millis() - lastMove < debounce)
+        return;
+
+    // UP = DOT
+    if(y > 800) {
+
+        currentMorse += ".";
+        Serial.println("DOT");
+        Serial.println(currentMorse);
+
+        lastMove = millis();
+    }
+
+    // DOWN = DASH
+    else if(y < 200) {
+
+        currentMorse += "_";
+        Serial.println("DASH");
+        Serial.println(currentMorse);
+
+        lastMove = millis();
+    }
+
+    // RIGHT = CONFIRM LETTER / SPACE
+    else if(x > 800) {
+
+        if(currentMorse.length() > 0) {
+
+            char c = decodeMorse(currentMorse);
+
+            typedText += c;
+
+            Serial.print("LETTER: ");
+            Serial.println(c);
+
+            currentMorse = "";
+        }
+        else {
+
+            typedText += ' ';
+            Serial.println("SPACE");
+        }
+
+        Serial.print("TEXT: ");
+        Serial.println(typedText);
+
+        lastMove = millis();
+    }
+
+    // LEFT = BACKSPACE
+    else if(x < 200) {
+
+        if(typedText.length() > 0) {
+
+            typedText.remove(typedText.length() - 1);
+
+            Serial.println("BACKSPACE");
+
+            Serial.print("TEXT: ");
+            Serial.println(typedText);
+        }
+
+        lastMove = millis();
+    }
+}
