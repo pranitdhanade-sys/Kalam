@@ -1,45 +1,4 @@
-```
 
----
-
-## 🚀 Installation & Setup
-
-1. **Clone the Source Code:**
-   ```bash
-   git clone [https://github.com/pranitdhanade-sys/Kalam.git](https://github.com/pranitdhanade-sys/Kalam.git)
-
-```
-
-2. **Flash the Code:** Load the main `.ino` sketch file using your preferred IDE (such as Arduino IDE) and upload it to your board.
-3. **Configure the Interface:** Launch your serial terminal utility and set the communication speed to **115200 baud**.
-
----
-
-## 🗺️ Future Accessibility Enhancements
-
-* **Native HID Support:** Upgrading to microcontrollers like the ATmega32U4 (Arduino Leonardo/Micro) or ESP32-S3 to let Kalam function natively as a USB or Bluetooth wireless keyboard.
-* **Integrated Speech Synthesis:** Attaching a text-to-speech breakout board to read back fully typed words without needing a computer screen.
-* **Smart Autocorrect:** Implementing a localized dictionary or lightweight predictive engine to compensate for accidental joystick movements.
-
----
-
-## 🤝 Contributing & Community
-
-We warmly welcome pull requests, hardware revisions, and feedback—especially from users within the blind and visually impaired community.
-
-1. Fork this project repository.
-2. Create your working branch (`git checkout -b feature/Optimization`).
-3. Commit your modifications (`git commit -m 'Add haptic patterns'`).
-4. Push your changes (`git push origin feature/Optimization`).
-5. Open a Pull Request for review.
-
----
-
-##Since **Kalam** is directly built for blind and visually impaired individuals, structuring the README with **excellent accessibility practices** is essential. Screen readers rely heavily on clear header hierarchies, semantic lists, and thoroughly descriptive alternative text (`alt` text).
-
-Here is an updated version of your README optimized specifically for assistive technology, featuring a dedicated **Demo Video & Media Context** section at the top.
-
----
 
 # Kalam 🖊️
 
@@ -54,7 +13,7 @@ The word **"Kalam"** translates to *pen*, *expression*, or *writing*. This proje
 > [!NOTE]
 > **To our visually impaired contributors and users:** The video linked below includes a full spoken-audio description detailing the hardware layout, joystick movements, and corresponding serial text output.
 
-* **Video Link:** [Click here to watch the Kalam demonstration video](https://www.google.com/search?q=INSERT_YOUR_VIDEO_LINK_HERE) *(Replace this link and the image source above once your video is ready)*
+* **Video Link:** [Click here to watch the Kalam demonstration video](https://github.com/pranitdhanade-sys/Kalam/blob/main/demo.mp4) *(Replace this link and the image source above once your video is ready)*
 * **Visual Description of the Demo:** The video shows a compact breadboard containing an Arduino Nano connected to a standard thumb-stick joystick. A hand pushes the joystick up multiple times to buffer dots, then down to buffer dashes. Pushing the joystick to the right triggers the immediate conversion of the Morse string into text on a nearby laptop screen running a serial monitor.
 
 ---
