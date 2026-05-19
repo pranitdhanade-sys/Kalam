@@ -1,100 +1,132 @@
-# Kalam 🖊️
-
-**Kalam** is an open-source, low-cost assistive communication device designed for blind and visually impaired users. By translating simple analog joystick movements into Morse code, Kalam enables users to type text efficiently without relying on a visual interface, leveraging tactile interaction and muscle memory.
-
-The word **"Kalam"** means *pen*, *expression*, *writing*, or *communication*. This project embodies the vision of making digital writing accessible to everyone.
+```
 
 ---
 
-## 💡 Inspiration & Vision
+## 🚀 Installation & Setup
 
-Many modern assistive technologies are expensive, complex, or steep to learn. Morse code offers a lightweight, highly efficient alternative that can be mastered purely through touch and muscle repetition.
-
-Kalam is built on the belief that communication should be:
-
-* **Independent:** Removing the absolute necessity for high-cost visual interfaces.
-* **Affordable:** Utilizing widely available, budget-friendly microcontrollers and components.
-* **Accessible:** Adapting technology to fit the unique ways people interact with the digital world.
-
----
-
-## ✨ Features
-
-* **Tactile Text Entry:** Seamless Morse code typing using standard joystick directions.
-* **Real-Time Decoding:** Instant translation from Morse symbols to alphanumeric characters.
-* **Lightweight Architecture:** Optimized embedded C++ code that runs perfectly on low-spec microcontrollers.
-* **Minimal Hardware Footprint:** Requires only an Arduino and a basic joystick module to get started.
-* **Highly Expandable:** Designed to easily integrate displays, haptics, or wireless modules.
-
----
-
-## 🕹️ Control Scheme
-
-Kalam maps the standard 2-axis movement of a joystick into the building blocks of Morse code:
-
-| Direction | Action | Symbol / Output |
-| --- | --- | --- |
-| **Up** | Input Dot | `.` |
-| **Down** | Input Dash | `_` |
-| **Right** | Confirm Character / Add Space | Decodes current sequence / ` ` |
-| **Left** | Backspace | Deletes last symbol/character |
-
-### 📋 Example Input (Typing "HELLO")
-
-1. **H** $\rightarrow$ `.` `.` `.` `.` $\rightarrow$ Move **Right** (Confirms 'H')
-2. **E** $\rightarrow$ `.` $\rightarrow$ Move **Right** (Confirms 'E')
-3. **L** $\rightarrow$ `.`, `_`, `.`, `.` $\rightarrow$ Move **Right** (Confirms 'L')
-4. **L** $\rightarrow$ `.`, `_`, `.`, `.` $\rightarrow$ Move **Right** (Confirms 'L')
-5. **O** $\rightarrow$ `_`, `_`, `_` $\rightarrow$ Move **Right** (Confirms 'O')
-
----
-
-## 🛠️ Hardware Requirements
-
-### Core Components
-
-* **Microcontroller:** Arduino UNO, Nano, or compatible board.
-* **Input Device:** Standard Analog 2-Axis Joystick Module (e.g., KY-023).
-* **Connectivity:** USB Cable (for power and Serial interfacing).
-
-### Optional Upgrades
-
-* **Haptics:** Vibration motor or piezo buzzer for tactile/audio feedback.
-* **Display:** 0.96" OLED Display (SSD1306) for visual debugging.
-* **Wireless:** HC-05 Bluetooth module or an ESP32 upgrade for standalone wireless keyboard capabilities.
-
----
-
-## 🔌 Circuit Diagram
-
-Connect your joystick module to the Arduino using the following pinout configuration:
-
-| Joystick Pin | Arduino Pin | Notes |
-| --- | --- | --- |
-| **VCC** | 5V | Power supply |
-| **GND** | GND | Ground |
-| **VRx** | A0 | Analog X-axis (Left/Right) |
-| **VRy** | A1 | Analog Y-axis (Up/Down) |
-| **SW** | D2 | Joystick Switch Click *(Optional)* |
-
----
-
-## ⚙️ How It Works
-
-1. **Read Analog Inputs:** The Arduino constantly monitors the analog voltage levels from the `VRx` and `VRy` pins.
-2. **Threshold Detection:** Movement thresholds are established to prevent accidental triggers due to joystick drift:
-```cpp
-if (y > 800) currentMorse += ".";   // Joystick pushed Up
-if (y < 200) currentMorse += "_";   // Joystick pushed Down
+1. **Clone the Source Code:**
+   ```bash
+   git clone [https://github.com/pranitdhanade-sys/Kalam.git](https://github.com/pranitdhanade-sys/Kalam.git)
 
 ```
 
+2. **Flash the Code:** Load the main `.ino` sketch file using your preferred IDE (such as Arduino IDE) and upload it to your board.
+3. **Configure the Interface:** Launch your serial terminal utility and set the communication speed to **115200 baud**.
 
-3. **Sequence Buffering:** Dot and dash symbols append to a dynamic string buffer.
-4. **Decoding Matrix:** When the joystick is pushed **Right**, the buffered Morse sequence matches against a lookup library to output the exact alphanumeric character.
-5. **Output Generation:** The final decoded text is printed out straight to the system's Serial connection.
+---
 
-### 🖥️ Expected Serial Monitor Output
+## 🗺️ Future Accessibility Enhancements
+
+* **Native HID Support:** Upgrading to microcontrollers like the ATmega32U4 (Arduino Leonardo/Micro) or ESP32-S3 to let Kalam function natively as a USB or Bluetooth wireless keyboard.
+* **Integrated Speech Synthesis:** Attaching a text-to-speech breakout board to read back fully typed words without needing a computer screen.
+* **Smart Autocorrect:** Implementing a localized dictionary or lightweight predictive engine to compensate for accidental joystick movements.
+
+---
+
+## 🤝 Contributing & Community
+
+We warmly welcome pull requests, hardware revisions, and feedback—especially from users within the blind and visually impaired community.
+
+1. Fork this project repository.
+2. Create your working branch (`git checkout -b feature/Optimization`).
+3. Commit your modifications (`git commit -m 'Add haptic patterns'`).
+4. Push your changes (`git push origin feature/Optimization`).
+5. Open a Pull Request for review.
+
+---
+
+##Since **Kalam** is directly built for blind and visually impaired individuals, structuring the README with **excellent accessibility practices** is essential. Screen readers rely heavily on clear header hierarchies, semantic lists, and thoroughly descriptive alternative text (`alt` text).
+
+Here is an updated version of your README optimized specifically for assistive technology, featuring a dedicated **Demo Video & Media Context** section at the top.
+
+---
+
+# Kalam 🖊️
+
+**Kalam** is an open-source, low-cost assistive communication device designed to empower blind, visually impaired, and deafblind users. By translating standard analog joystick movements into Morse code, Kalam enables individuals to type and communicate efficiently entirely through tactile interaction, muscle memory, and haptic feedback.
+
+The word **"Kalam"** translates to *pen*, *expression*, or *writing*. This project aims to lower the barrier to digital expression by replacing expensive, specialized assistive technology with an affordable, customizable, open-source alternative.
+
+---
+
+## 📺 Demo Video & Audio Walkthrough
+
+> [!NOTE]
+> **To our visually impaired contributors and users:** The video linked below includes a full spoken-audio description detailing the hardware layout, joystick movements, and corresponding serial text output.
+
+* **Video Link:** [Click here to watch the Kalam demonstration video](https://www.google.com/search?q=INSERT_YOUR_VIDEO_LINK_HERE) *(Replace this link and the image source above once your video is ready)*
+* **Visual Description of the Demo:** The video shows a compact breadboard containing an Arduino Nano connected to a standard thumb-stick joystick. A hand pushes the joystick up multiple times to buffer dots, then down to buffer dashes. Pushing the joystick to the right triggers the immediate conversion of the Morse string into text on a nearby laptop screen running a serial monitor.
+
+---
+
+## 🕹️ Accessible Control Scheme
+
+Kalam uses the physical limits of a 2-axis joystick to map out the characters of the alphabet. The control mapping is structured as follows:
+
+* **Joystick Up:** Input Dot (`.`)
+* **Joystick Down:** Input Dash (`_`)
+* **Joystick Right:** Confirm letter / Insert a text space
+* **Joystick Left:** Backspace (Deletes the last inputted symbol or letter)
+
+### Text Entry Example (Typing the word "HELLO")
+
+1. **Letter H:** Push **Up** four times (`....`), then push **Right** to confirm 'H'.
+2. **Letter E:** Push **Up** once (`.`), then push **Right** to confirm 'E'.
+3. **Letter L:** Push **Up**, **Down**, **Up**, **Up** (`._..`), then push **Right** to confirm 'L'.
+4. **Letter L:** Push **Up**, **Down**, **Up**, **Up** (`._..`), then push **Right** to confirm 'L'.
+5. **Letter O:** Push **Down** three times (`___`), then push **Right** to confirm 'O'.
+
+---
+
+## 💡 Accessibility and Design Goals
+
+* **Low Cognitive Load:** Morse code relies on spatial and rhythmic muscle memory, making it ideal for non-visual operation.
+* **Affordable Fabrication:** Built using common, budget-friendly electronics components rather than proprietary, high-cost assistive tech.
+* **Tactile Autonomy:** Designed to be operated entirely through physical sensation without relying on screens, text-heavy menus, or complex gestures.
+
+---
+
+## 🛠️ Hardware Specifications
+
+### Standard Components
+
+* **Microcontroller:** Arduino UNO, Nano, or any equivalent 5V board.
+* **Input Interface:** Analog 2-Axis Joystick Module (e.g., KY-023 or similar).
+* **Interface Cable:** USB Cable for power and serial data transmission.
+
+### Recommended Accessibility Add-ons
+
+* **Haptic Interface:** 5V Vibration Motor to give physical confirmation patterns for dots and dashes.
+* **Audio Interface:** Piezo Buzzer to output matching audio tones.
+
+---
+
+## 🔌 Circuit Wiring Map
+
+| Joystick Module Pin | Arduino Connection Pin | Purpose |
+| --- | --- | --- |
+| **VCC** | 5V | Logic Power |
+| **GND** | GND | Ground Reference |
+| **VRx** | A0 | X-axis Position (Left/Right controls) |
+| **VRy** | A1 | Y-axis Position (Up/Down controls) |
+| **SW** | D2 | Built-in push-button toggle *(Optional)* |
+
+---
+
+## ⚙️ Software Logic & Operation
+
+The firmware monitors the analog voltages output by the joystick potentiometers. Threshold limits are coded to trigger inputs smoothly:
+
+```cpp
+// Coordinate detection rules
+if (y > 800) currentMorse += ".";   // Joystick pushed completely Up
+if (y < 200) currentMorse += "_";   // Joystick pushed completely Down
+
+```
+
+When the joystick is deflected to the **Right**, the string buffer containing the dots and dashes is run through an internal lookup array. The translated character is sent directly to the device interface.
+
+### Example Serial Output Log
 
 ```text
 DOT
@@ -113,61 +145,41 @@ TEXT: HELLO
 
 ## 🚀 Installation & Setup
 
-1. **Clone the Repository:**
-
+1. **Clone the Source Code:**
 ```bash
-   git clone https://github.com/pranitdhanade-sys/Kalam.git
+git clone [https://github.com/pranitdhanade-sys/Kalam.git](https://github.com/pranitdhanade-sys/Kalam.git)
 
 ```
 
-2. **Open the Project:** Launch the Arduino IDE and open the main sketch file (`.ino`) from the cloned directory.
-3. **Upload Code:** Connect your Arduino via USB, select your board/port configuration, and hit **Upload**.
-4. **Launch Monitor:** Open the Serial Monitor (`Ctrl + Shift + M`), and change the baud rate setting to **115200**.
+
+2. **Flash the Code:** Load the main `.ino` sketch file using your preferred IDE (such as Arduino IDE) and upload it to your board.
+3. **Configure the Interface:** Launch your serial terminal utility and set the communication speed to **115200 baud**.
 
 ---
 
-## 🗺️ Roadmap & Future Improvements
+## 🗺️ Future Accessibility Enhancements
 
-We intend to evolve Kalam across multiple fronts to maximize its accessibility potential:
-
-### 🔊 Accessibility Extensions
-
-* **Vibration & Audio Feedback:** Distinct haptic rhythms and audio tones for dots, dashes, and letters.
-* **Speech Synthesis:** Text-to-speech integration to speak aloud full sentences.
-* **Braille Output:** Integration with small physical Braille refreshable pins.
-
-### 📶 Connectivity & UI
-
-* **USB/Bluetooth HID Keyboard:** Allow the device to act as an actual native keyboard for PCs and smartphones.
-* **Mobile App Integration:** Companion app for easier device calibration and text logs.
-
-### 🧠 Smart Features
-
-* **Predictive Text:** T9-style or AI-powered predictive text suggestions to speed up typing rates.
-* **Adaptive Learning:** Software that automatically calibrates thresholds based on individual muscle response profiles.
-
-### 🏗️ Hardware Re-designs
-
-* **Wearable Glove/Wristband:** Moving the inputs away from joysticks to wearable finger-taps.
-* **Ergonomic Enclosures:** 3D-printable cases optimized for handheld comfort.
+* **Native HID Support:** Upgrading to microcontrollers like the ATmega32U4 (Arduino Leonardo/Micro) or ESP32-S3 to let Kalam function natively as a USB or Bluetooth wireless keyboard.
+* **Integrated Speech Synthesis:** Attaching a text-to-speech breakout board to read back fully typed words without needing a computer screen.
+* **Smart Autocorrect:** Implementing a localized dictionary or lightweight predictive engine to compensate for accidental joystick movements.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contributing & Community
 
-Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make toward improving accessibility, code optimization, or documentation are **greatly appreciated**.
+We warmly welcome pull requests, hardware revisions, and feedback—especially from users within the blind and visually impaired community.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork this project repository.
+2. Create your working branch (`git checkout -b feature/Optimization`).
+3. Commit your modifications (`git commit -m 'Add haptic patterns'`).
+4. Push your changes (`git push origin feature/Optimization`).
+5. Open a Pull Request for review.
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+This repository is distributed and licensed under the open-source **MIT License**.
 
 ```
 
